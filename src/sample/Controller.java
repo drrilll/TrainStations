@@ -353,5 +353,44 @@ public class Controller {
         update();
     }
 
+    public void optimalColouring2(){
+        int len = Station.length;
+        int colors = 6*len;
+        Station.setColors(colors);
+        for (Station station: northbound){
+            int color = -(station.locX +station.locY - 2*(station.locX%len)+2*len-1 );
+            color = color % colors;
+            if (color < 0){
+                color+=colors;
+            }
+            station.setColor(color);
+        }
+        for (Station station: southbound){
+            int color = (station.locX - 2*(station.locX%len)+station.locY+2*len-1);
+            color = color % colors;
+            if (color < 0){
+                color+=colors;
+            }
+            station.setColor(color);
+        }
+        for (Station station: eastbound){
+            int color = (station.locY - 2*(station.locY%len)+station.locX-len+1);
+            color = color % colors;
+            if (color < 0){
+                color+=colors;
+            }
+            station.setColor(color);
+        }
+        for (Station station: westbound){
+            int color = -(station.locY - 2*(station.locY%len)+station.locX-len+1);
+            color = color % colors;
+            if (color < 0){
+                color+=colors;
+            }
+            station.setColor(color);
+        }
+        update();
+    }
+
 
 }

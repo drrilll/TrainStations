@@ -221,7 +221,11 @@ public class Main extends Application {
         });
         optimalColoring.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
-                controller.optimalColouring();
+                if (Station.length >2) {
+                    controller.optimalColouring2();
+                }else{
+                    controller.optimalColouring();
+                }
             }
         });
         numColors.setOnAction(new EventHandler<ActionEvent>() {
